@@ -1,121 +1,227 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <title>เว็บไซต์วิชาที่ชอบ</title>
+<meta charset="UTF-8">
+<title>Shop Online</title>
 
-    <style>
-        body {
-            background-color: #fff1f5; /* ชมพูอ่อน */
-            font-family: "TH Sarabun New", Tahoma, sans-serif;
-            margin: 20px;
-        }
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:#f4f6f8;
+}
 
-        h1 {
-            background-color: #ffd6e8;
-            color: #7a3b69;
-            text-align: center;
-            padding: 15px;
-            border-radius: 15px;
-        }
+/* HEADER */
+header{
+    background:linear-gradient(135deg,#1abc9c,#16a085);
+    color:white;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.cart{
+    position:relative;
+    font-size:26px;
+    cursor:pointer;
+}
+.cart span{
+    position:absolute;
+    top:-8px;
+    right:-10px;
+    background:red;
+    color:white;
+    font-size:12px;
+    padding:3px 7px;
+    border-radius:50%;
+}
 
-        h2 {
-            color: #6b9080;
-            background-color: #eaf4f4;
-            padding: 10px;
-            border-radius: 10px;
-            width: fit-content;
-        }
+/* NAV */
+nav{
+    background:#148f77;
+    padding:10px;
+    text-align:center;
+}
+nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+    font-weight:bold;
+}
 
-        p {
-            color: #4a4a4a;
-            font-size: 18px;
-        }
+/* PRODUCT */
+.container{
+    padding:30px;
+    text-align:center;
+}
+.product{
+    background:white;
+    width:260px;
+    display:inline-block;
+    margin:15px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+.product img{width:100%;}
+.product h3{margin:10px 0 5px;}
+.product p{color:#27ae60;font-weight:bold;}
+.product button{
+    margin-bottom:15px;
+    padding:10px;
+    width:90%;
+    border:none;
+    border-radius:20px;
+    background:#1abc9c;
+    color:white;
+    cursor:pointer;
+}
 
-        .box {
-            background-color: #ffffff;
-            padding: 15px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-        }
+/* CART PAGE */
+#cartPage{
+    display:none;
+    padding:30px;
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+th,td{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+.total{
+    text-align:right;
+    margin-top:15px;
+    font-size:18px;
+}
+.pay{
+    margin-top:20px;
+    padding:15px;
+    width:100%;
+    background:#27ae60;
+    color:white;
+    border:none;
+    font-size:18px;
+    border-radius:10px;
+    cursor:pointer;
+}
+.back{
+    margin-top:10px;
+    background:#7f8c8d;
+}
 
-        ul {
-            background-color: #fef6e4;
-            padding: 15px;
-            border-radius: 12px;
-            width: 300px;
-        }
-
-        table {
-            border-collapse: collapse;
-            background-color: #ffffff;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        th {
-            background-color: #cdb4db;
-            color: #ffffff;
-            padding: 10px;
-        }
-
-        td {
-            background-color: #f1e8ff;
-            padding: 10px;
-            text-align: center;
-            color: #4a4a4a;
-        }
-
-        footer {
-            margin-top: 30px;
-            text-align: center;
-            color: #7a7a7a;
-        }
-    </style>
+/* FOOTER */
+footer{
+    background:#2c3e50;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+</style>
 </head>
+
 <body>
 
-    <h1>ยินดีต้อนรับสู่เว็บไซต์ของฉัน</h1>
+<header>
+    <h1>🛒 Shop Online</h1>
+    <div class="cart" onclick="openCart()">
+        🛍️ <span id="cartCount">0</span>
+    </div>
+</header>
 
-    <div class="box">
-        <h2>เกี่ยวกับฉัน</h2>
-        <p>
-            ฉันเป็นนักเรียนที่กำลังเรียนรู้การสร้างเว็บไซต์  
-        
-        </p>
+<nav>
+    <a href="#" onclick="showShop()">หน้าแรก</a>
+    <a href="#" onclick="openCart()">ตะกร้า</a>
+</nav>
+
+<!-- SHOP PAGE -->
+<div id="shopPage" class="container">
+    <div class="product">
+        <img src="https://via.placeholder.com/260">
+        <h3>เสื้อยืดแฟชั่น</h3>
+        <p>199 บาท</p>
+        <button onclick="addToCart('เสื้อยืดแฟชั่น',199)">เพิ่มลงตะกร้า</button>
     </div>
 
-    <div class="box">
-        <h2>สิ่งที่ฉันสนใจ</h2>
-        <ul>
-            <li>คอมพิวเตอร์</li>
-            <li>การเขียนโปรแกรม</li>
-            <li>การออกแบบเว็บไซต์</li>
-        </ul>
+    <div class="product">
+        <img src="https://via.placeholder.com/260">
+        <h3>รองเท้าผ้าใบ</h3>
+        <p>599 บาท</p>
+        <button onclick="addToCart('รองเท้าผ้าใบ',599)">เพิ่มลงตะกร้า</button>
     </div>
 
-    <div class="box">
-        <h2>ตารางข้อมูล</h2>
-        <table>
+    <div class="product">
+        <img src="https://via.placeholder.com/260">
+        <h3>กระเป๋าสะพาย</h3>
+        <p>399 บาท</p>
+        <button onclick="addToCart('กระเป๋าสะพาย',399)">เพิ่มลงตะกร้า</button>
+    </div>
+</div>
+
+<!-- CART PAGE -->
+<div id="cartPage">
+    <h2>🧾 รายการในตะกร้า</h2>
+
+    <table>
+        <thead>
             <tr>
-                <th>วิชา</th>
-                <th>ความชอบ</th>
+                <th>สินค้า</th>
+                <th>ราคา (บาท)</th>
             </tr>
-            <tr>
-                <td>คณิตศาสตร์</td>
-                <td>มาก</td>
-            </tr>
-            <tr>
-                <td>วิทยาศาสตร์</td>
-                <td>มาก</td>
-            </tr>
-        </table>
+        </thead>
+        <tbody id="cartItems"></tbody>
+    </table>
+
+    <div class="total">
+        <strong>ราคารวม: <span id="totalPrice">0</span> บาท</strong>
     </div>
 
-    <footer>
-        จัดทำโดย: ชื่อ ปัณฑิกา เหมือนเล็ก | ชั้น ม.4|5
-    </footer>
+    <button class="pay" onclick="pay()">💳 ชำระเงิน</button>
+    <button class="pay back" onclick="showShop()">⬅ กลับไปเลือกสินค้า</button>
+</div>
+
+<footer>
+    © 2026 Shop Online | เว็บไซต์ตัวอย่างเพื่อการศึกษา
+</footer>
+
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(name, price){
+    cart.push({name, price});
+    total += price;
+    document.getElementById("cartCount").innerText = cart.length;
+    alert("เพิ่มสินค้าเรียบร้อย!");
+}
+
+function openCart(){
+    document.getElementById("shopPage").style.display="none";
+    document.getElementById("cartPage").style.display="block";
+
+    let items = "";
+    cart.forEach(item=>{
+        items += `<tr><td>${item.name}</td><td>${item.price}</td></tr>`;
+    });
+    document.getElementById("cartItems").innerHTML = items;
+    document.getElementById("totalPrice").innerText = total;
+}
+
+function showShop(){
+    document.getElementById("shopPage").style.display="block";
+    document.getElementById("cartPage").style.display="none";
+}
+
+function pay(){
+    alert("ชำระเงินเรียบร้อยแล้ว ✅\nขอบคุณที่ใช้บริการ");
+    cart=[];
+    total=0;
+    document.getElementById("cartCount").innerText=0;
+    showShop();
+}
+</script>
 
 </body>
 </html>
