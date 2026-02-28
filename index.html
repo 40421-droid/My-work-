@@ -2,16 +2,14 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>Shop Online</title>
-    
+<title> pantika Shop Online</title>
+
 <style>
 body{
     margin:0;
     font-family:'Segoe UI',sans-serif;
     background:#f4f6f8;
 }
-
-/* HEADER */
 header{
     background:linear-gradient(135deg,#1abc9c,#16a085);
     color:white;
@@ -35,8 +33,6 @@ header{
     padding:3px 7px;
     border-radius:50%;
 }
-
-/* NAV */
 nav{
     background:#148f77;
     padding:10px;
@@ -48,8 +44,6 @@ nav a{
     text-decoration:none;
     font-weight:bold;
 }
-
-/* PRODUCT */
 .container{
     padding:30px;
     text-align:center;
@@ -61,8 +55,13 @@ nav a{
     margin:15px;
     border-radius:15px;
     box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    overflow:hidden;
 }
-.product img{width:100%;}
+.product img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
 .product h3{margin:10px 0 5px;}
 .product p{color:#27ae60;font-weight:bold;}
 .product button{
@@ -75,12 +74,7 @@ nav a{
     color:white;
     cursor:pointer;
 }
-
-/* CART PAGE */
-#cartPage{
-    display:none;
-    padding:30px;
-}
+#cartPage{display:none;padding:30px;}
 table{
     width:100%;
     border-collapse:collapse;
@@ -107,12 +101,7 @@ th,td{
     border-radius:10px;
     cursor:pointer;
 }
-.back{
-    margin-top:10px;
-    background:#7f8c8d;
-}
-
-/* FOOTER */
+.back{background:#7f8c8d;}
 footer{
     background:#2c3e50;
     color:white;
@@ -136,89 +125,78 @@ footer{
     <a href="#" onclick="openCart()">ตะกร้า</a>
 </nav>
 
-<!-- SHOP PAGE -->
+<!-- SHOP -->
 <div id="shopPage" class="container">
     <div class="product">
-        <img src="https://via.placeholder.com/260">
+        <img src="images/shirt.jpg" alt="เสื้อยืด">
         <h3>เสื้อยืดแฟชั่น</h3>
         <p>199 บาท</p>
         <button onclick="addToCart('เสื้อยืดแฟชั่น',199)">เพิ่มลงตะกร้า</button>
     </div>
 
     <div class="product">
-        <img src="https://via.placeholder.com/260">
+        <img src="images/shoes.jpg" alt="รองเท้า">
         <h3>รองเท้าผ้าใบ</h3>
         <p>599 บาท</p>
         <button onclick="addToCart('รองเท้าผ้าใบ',599)">เพิ่มลงตะกร้า</button>
     </div>
 
     <div class="product">
-        <img src="https://via.placeholder.com/260">
+        <img src="images/bag.jpg" alt="กระเป๋า">
         <h3>กระเป๋าสะพาย</h3>
         <p>399 บาท</p>
         <button onclick="addToCart('กระเป๋าสะพาย',399)">เพิ่มลงตะกร้า</button>
     </div>
 </div>
 
-<!-- CART PAGE -->
+<!-- CART -->
 <div id="cartPage">
     <h2>🧾 รายการในตะกร้า</h2>
-
     <table>
         <thead>
             <tr>
                 <th>สินค้า</th>
-                <th>ราคา (บาท)</th>
+                <th>ราคา</th>
             </tr>
         </thead>
         <tbody id="cartItems"></tbody>
     </table>
-
     <div class="total">
-        <strong>ราคารวม: <span id="totalPrice">0</span> บาท</strong>
+        ราคารวม: <strong><span id="totalPrice">0</span> บาท</strong>
     </div>
-
     <button class="pay" onclick="pay()">💳 ชำระเงิน</button>
     <button class="pay back" onclick="showShop()">⬅ กลับไปเลือกสินค้า</button>
 </div>
 
 <footer>
-    © 2026 Shop Online | เว็บไซต์ตัวอย่างเพื่อการศึกษา
+© pantika Shop Online | 
 </footer>
 
 <script>
-let cart = [];
-let total = 0;
-
-function addToCart(name, price){
-    cart.push({name, price});
-    total += price;
-    document.getElementById("cartCount").innerText = cart.length;
-    alert("เพิ่มสินค้าเรียบร้อย!");
+let cart=[], total=0;
+function addToCart(name,price){
+    cart.push({name,price});
+    total+=price;
+    cartCount.innerText=cart.length;
+    alert("เพิ่มสินค้าแล้ว");
 }
-
 function openCart(){
-    document.getElementById("shopPage").style.display="none";
-    document.getElementById("cartPage").style.display="block";
-
-    let items = "";
-    cart.forEach(item=>{
-        items += `<tr><td>${item.name}</td><td>${item.price}</td></tr>`;
+    shopPage.style.display="none";
+    cartPage.style.display="block";
+    cartItems.innerHTML="";
+    cart.forEach(i=>{
+        cartItems.innerHTML+=`<tr><td>${i.name}</td><td>${i.price}</td></tr>`;
     });
-    document.getElementById("cartItems").innerHTML = items;
-    document.getElementById("totalPrice").innerText = total;
+    totalPrice.innerText=total;
 }
-
 function showShop(){
-    document.getElementById("shopPage").style.display="block";
-    document.getElementById("cartPage").style.display="none";
+    shopPage.style.display="block";
+    cartPage.style.display="none";
 }
-
 function pay(){
-    alert("ชำระเงินเรียบร้อยแล้ว ✅\nขอบคุณที่ใช้บริการ");
-    cart=[];
-    total=0;
-    document.getElementById("cartCount").innerText=0;
+    alert("ชำระเงินเรียบร้อย ✅");
+    cart=[]; total=0;
+    cartCount.innerText=0;
     showShop();
 }
 </script>
